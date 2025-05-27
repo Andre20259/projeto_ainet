@@ -10,7 +10,7 @@ git clone  https://github.com/Andre20259/projeto_ainet.git
 
 Para o repositório ficar mais leve, e por segurança, os ficheiros .env e a base de dados não estão incluidas
 
-**Após clonar o repositório, para dentro da pasta ai-projeto, copiar o ficheiro .env e substituir a pasta database pela fornecida pelo professor.**
+**Após clonar o repositório, substituir o ficheiro .env e copiar a pasta database pela fornecida pelo professor.**
 
 ```bash
 php artisan migrate:fresh
