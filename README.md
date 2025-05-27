@@ -1,11 +1,5 @@
 # projeto_ainet
 
-## User para testes:
-- **Email:** test@test.com
-- **Password:** password
-
-
-
 ## Clonar o repositório:
 
 > Dentro da pasta www do laragon
