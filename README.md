@@ -5,7 +5,7 @@
 > Dentro da pasta www do laragon
 
 ```bash
-git clone  https://github.com/Andre20259/projeto_ainet.git
+git clone  https://github.com/Andre20259/projeto-ainet.git
 ```
 
 Para o repositório ficar mais leve, e por segurança, os ficheiros .env e a base de dados não estão incluidas
