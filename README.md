@@ -13,8 +13,10 @@ Para o repositório ficar mais leve, e por segurança, os ficheiros .env e a bas
 **Após clonar o repositório, substituir o ficheiro .env e copiar a pasta database pela fornecida pelo professor.**
 
 ```bash
+composer install
 php artisan migrate:fresh
 php artisan db:seed
+npm install & npm run build
 ```
 
 > Só é necessário fazer isto uma vez após clonar o repositório. Como o .env e a database estão no git ignore não haveram conlfitos para colocar no git hub
