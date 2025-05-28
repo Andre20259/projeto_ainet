@@ -18,15 +18,25 @@ class ProductController extends Controller
     public function index(Request $request): View
     {
         $categories = Categorie::all();
+        $name = $request->name;
         $query = Product::query();
 
         if ($request->filled('category')) {
             $query->where('category_id', $request->category);
         }
-        $products = Product::paginate(18);
-        return view('products.index', compact('products','categories'));
-    }
+        if ($request->filled('name') ) {
+            $query->where('name', 'like', '%' . $request->name . '%');
+        }
 
+        $products = $query->paginate(18)->withQueryString();
+
+        // Pass the current name value to the view
+        return view('products.index', [
+            'products' => $products,
+            'categories' => $categories,
+            'name' => $request->name,
+        ]);
+    }
     /**
      * Show the form for creating a new product.
      */
