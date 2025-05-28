@@ -23,6 +23,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'photo',
+        'type',
+        'gender',
+        'photo',
+        'nif',
+        'deleted_at'
+
     ];
 
     /**
@@ -46,6 +53,15 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function getPhotoFullUrlAttribute()
+    {
+        if ($this->photo ) {
+            return asset("storage/users/{$this->photo}");
+        } else {
+            return asset("storage/users/anonymous.png");
+        }
     }
 
     /**
