@@ -16,6 +16,7 @@ Para o repositório ficar mais leve, e por segurança, os ficheiros .env e a bas
 composer install
 php artisan migrate:fresh
 php artisan db:seed
+php artisan storage:link
 npm install & npm run build
 ```
 
