@@ -14,11 +14,8 @@ Route::view('dashboard', 'dashboard')
     ->name('dashboard');
 
 // Product routes
-Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/showcase', [ProductController::class, 'showcase'])->name('products.showcase');
-Route::get('/products/{product}/show', [ProductController::class, 'show'])->name('products.show');
-Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
-Route::delete('/products/{product}/destroy', [ProductController::class, 'destroy'])->name('products.destroy');
+Route::resource('products', ProductController::class);
 
 // Cart routes
 Route::get('/cart', [CartController::class, 'show'])->name('cart.show');

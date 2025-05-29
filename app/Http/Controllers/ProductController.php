@@ -45,9 +45,51 @@ class ProductController extends Controller
         return view('products.create');
     }
 
+    public function store(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+        ]);
+
+        Product::create($request->all());
+
+        return redirect()->route('products.index')->with('success', 'Product created successfully.');
+    }
+
     public function show(Product $product): View
     {
         return view('products.show', compact('product'));
+    }
+
+    public function edit(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+        ]);
+
+        Product::create($request->all());
+
+        return redirect()->route('products.index')->with('success', 'Product created successfully.');
+    }
+
+    public function update(Request $request, Product $product): RedirectResponse
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+        ]);
+
+        $product->update($request->all());
+
+        return redirect()->route('products.index')->with('success', 'Product updated successfully.');
+    }
+
+    public function destroy(Product $product): RedirectResponse
+    {
+        $product->delete();
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
 
     public function showcase(Request $request): View
@@ -74,38 +116,6 @@ class ProductController extends Controller
     }
 
 
-    /**
-     * Store a newly created product in storage.
-     */
-    public function store(Request $request): RedirectResponse
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-        ]);
-
-        Product::create($request->all());
-
-        return redirect()->route('products.index')->with('success', 'Product created successfully.');
-    }
-
-    public function edit(Request $request): RedirectResponse
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-        ]);
-
-        Product::create($request->all());
-
-        return redirect()->route('products.index')->with('success', 'Product created successfully.');
-    }
-
-    public function destroy(Product $product): RedirectResponse
-    {
-        $product->delete();
-        return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
-    }
 
 
 }
