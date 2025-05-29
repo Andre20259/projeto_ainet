@@ -10,18 +10,9 @@
             @else
                 <div class="my-4 p-6 ">
                     <div class="my-4 font-base text-sm text-gray-700 dark:text-gray-300">
-                        <x-products.table :products="$cart"
-                            :showView="false"
-                            :showEdit="false"
-                            :showDelete="false"
-                            :showAddToCart="false"
-                            :showRemoveFromCart="true"
-                        />
+                        <x-cart.table :products="$cart"/>
                     </div>
                     <div class="mt-12">
-                        <div>
-                            <h3 class="mb-4 text-xl">Shopping Cart Confirmation</h3>
-                        </div>
                         <div class="flex justify-between items-start space-x-4">
                             <form action="{{ route('cart.confirm') }}" method="post" class="flex space-x-4">
                                 @csrf

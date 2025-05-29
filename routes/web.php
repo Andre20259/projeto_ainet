@@ -13,7 +13,21 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+// Product routes
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/showcase', [ProductController::class, 'showcase'])->name('products.showcase');
+Route::get('/products/{product}/show', [ProductController::class, 'show'])->name('products.show');
+Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+Route::delete('/products/{product}/destroy', [ProductController::class, 'destroy'])->name('products.destroy');
+
+// Cart routes
+Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
+Route::post('cart/{product}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::delete('cart/{product}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::post('cart', [CartController::class, 'confirm'])->name('cart.confirm');
+Route::delete('cart', [CartController::class, 'destroy'])->name('cart.destroy');
+
+//User routes
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
@@ -23,18 +37,5 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
 });
 
-Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
-
-// Add a discipline to the cart:
-Route::post('cart/{discipline}', [CartController::class, 'addToCart'])->name('cart.add');
-
-// Remove a discipline from the cart:
-Route::delete('cart/{discipline}', [CartController::class, 'removeFromCart'])->name('cart.remove');
-
-// Confirm (store) the cart and save disciplines registration on the database:
-Route::post('cart', [CartController::class, 'confirm'])->name('cart.confirm');
-
-// Clear the cart:
-Route::delete('cart', [CartController::class, 'destroy'])->name('cart.destroy');
 
 require __DIR__.'/auth.php';

@@ -1,6 +1,4 @@
-<!-- filepath: resources/views/components/products/filter-card.blade.php -->
-
-<form method="GET" action="{{ route('products.showcase') }}" class="mb-6">
+<form method="GET" action="{{ route('products.index') }}" class="mb-6">
     <div class="flex gap-4">
         <div class="flex-1">
             <label for="category" class="block mb-2 text-sm font-medium ">Category</label>
@@ -28,6 +26,6 @@
     </div>
     <div class="flex gap-6 mt-5">
         <button type="submit" class="px-4 py-3 bg-gray-400 dark:bg-zinc-500 hover:bg-zinc-600 text-white rounded">Filter</button>
-        <a href="{{ route('products.showcase') }}" class="px-4 py-3 rounded bg-gray-400 text-white hover:bg-zinc-600 transition text-center dark:bg-zinc-500">Clear Filters</a>
+        <a href="{{ route('products.index') }}" class="px-4 py-3 rounded bg-gray-400 text-white hover:bg-zinc-600 transition text-center dark:bg-zinc-500">Clear Filters</a>
     </div>
 </form>

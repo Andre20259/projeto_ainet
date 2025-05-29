@@ -50,6 +50,30 @@ class ProductController extends Controller
         return view('products.show', compact('product'));
     }
 
+    public function showcase(Request $request): View
+    {
+        $categories = Categorie::all();
+        $name = $request->name;
+        $query = Product::query();
+
+        if ($request->filled('category')) {
+            $query->where('category_id', $request->category);
+        }
+        if ($request->filled('name') ) {
+            $query->where('name', 'like', '%' . $request->name . '%');
+        }
+
+        $products = $query->paginate(18)->withQueryString();
+
+        // Pass the current name value to the view
+        return view('products.showcase', [
+            'products' => $products,
+            'categories' => $categories,
+            'name' => $request->name,
+        ]);
+    }
+
+
     /**
      * Store a newly created product in storage.
      */
@@ -63,6 +87,24 @@ class ProductController extends Controller
         Product::create($request->all());
 
         return redirect()->route('products.index')->with('success', 'Product created successfully.');
+    }
+
+    public function edit(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+        ]);
+
+        Product::create($request->all());
+
+        return redirect()->route('products.index')->with('success', 'Product created successfully.');
+    }
+
+    public function destroy(Product $product): RedirectResponse
+    {
+        $product->delete();
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
 
 
