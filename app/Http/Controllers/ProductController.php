@@ -40,9 +40,13 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new product.
      */
-    public function create(): View
+    public function create()
     {
-        return view('products.create');
+        $categories = Categorie::all(); // or whatever your Category model is called
+        return view('products.create', [
+            'categories' => $categories,
+            'product' => new Product(), // optional, for form binding
+        ]);
     }
 
     public function store(Request $request): RedirectResponse
