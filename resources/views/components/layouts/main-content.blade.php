@@ -1,7 +1,7 @@
 <x-layouts.app.sidebar :title="$title ?? null">
     <flux:main>
-        <x.layouts.main-content :title="$title ?? null" :heading="$heading ?? null" :subheading="$subheading ?? null">
-            {{ $slot }}
-        </x.layouts.main-content>
+        @include('partials.main-content-headings')
+        @include('partials.main-content-alerts')
+        {{ $slot }}
     </flux:main>
 </x-layouts.app.sidebar>
