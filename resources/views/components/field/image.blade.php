@@ -39,7 +39,7 @@
 @endphp
 <div {{ $attributes }}>
     <div class="flex-col">
-        <div class="block font-medium text-sm text-gray-700 dark:text-gray-300">
+        <div class="block font-medium text-sm text-gray-700 dark:text-gray-300 mt-6">
             {{ $label }}
         </div>
         <img class="{{$widthClass}} {{$maxHeightClass}} aspect-auto"
@@ -76,6 +76,11 @@
                     </div>
                     @enderror
                 </div>
+                @if($deleteAllow)
+                    <div>
+                        <flux:button variant="danger" onclick="document.getElementById('{{ $deleteForm }}').submit()">{{ $deleteTitle }}</flux:button>
+                    </div>
+                @endif
             </div>
         @endif
     </div>
